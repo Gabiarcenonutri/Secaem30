@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Seca em 30</title>
+    <style>
+        body {
+            font-family: 'General Sans Variable', sans-serif;
+            background-color: #fef9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #f2ead5;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #ec695e;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #ec695e;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d95b51;
+        }
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #ec695e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Seca em 30</h1>
+
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" placeholder="Ex: 70">
+
+        <label for="altura">Altura (cm):</label>
+        <input type="number" id="altura" placeholder="Ex: 165">
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" placeholder="Ex: 30">
+
+        <label for="atividade">Nível de atividade física:</label>
+        <select id="atividade">
+            <option value="1.2">Sedentária (0-1 treino/semana)</option>
+            <option value="1.375">Levemente ativa (2-3 treinos/semana)</option>
+            <option value="1.55">Moderadamente ativa (4-5 treinos/semana)</option>
+            <option value="1.725">Muito ativa (6-7 treinos/semana)</option>
+        </select>
+
+        <label for="objetivo">Objetivo:</label>
+        <select id="objetivo">
+            <option value="2">Perder até 2kg no mês (déficit 513 kcal)</option>
+            <option value="3">Perder até 3kg no mês (déficit 770 kcal)</option>
+            <option value="4">Perder até 4kg no mês (déficit 900 kcal) — (só se peso ≥ 70kg)</option>
+            <option value="5">Perder até 5kg no mês (déficit 1283 kcal) — (só se peso ≥ 90kg)</option>
+        </select>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            const peso = parseFloat(document.getElementById("peso").value);
+            const altura = parseFloat(document.getElementById("altura").value);
+            const idade = parseInt(document.getElementById("idade").value);
+            const atividade = parseFloat(document.getElementById("atividade").value);
+            const objetivo = parseInt(document.getElementById("objetivo").value);
+
+            const resultado = document.getElementById("resultado");
+
+            if (isNaN(peso) || isNaN(altura) || isNaN(idade)) {
+                resultado.innerHTML = "⚠️ Por favor, preencha todos os campos corretamente.";
+                return;
+            }
+
+            const tmb = 10 * peso + 6.25 * altura - 5 * idade - 161;
+            const gasto_total = tmb * atividade;
+
+            let deficit = 0;
+            let mensagem = "";
+
+            if (objetivo === 2) {
+                deficit = 513;
+                mensagem = "Perder até 2kg no mês";
+            } else if (objetivo === 3) {
+                deficit = 770;
+                mensagem = "Perder até 3kg no mês";
+            } else if (objetivo === 4) {
+                if (peso < 70) {
+                    resultado.innerHTML = "⚠️ A opção de perder até 4kg no mês está disponível apenas para quem pesa 70kg ou mais.";
+                    return;
+                }
+                deficit = 900;
+                mensagem = "Perder até 4kg no mês";
+            } else if (objetivo === 5) {
+                if (peso < 90) {
+                    resultado.innerHTML = "⚠️ A opção de perder até 5kg no mês está disponível apenas para quem pesa 90kg ou mais.";
+                    return;
+                }
+                deficit = 1283;
+                mensagem = "Perder até 5kg no mês";
+            }
+
+            const consumo = gasto_total - deficit;
+
+            resultado.innerHTML = `
+                💡 Seu gasto calórico estimado é de <strong>${Math.round(gasto_total)} kcal</strong> por dia.<br><br>
+                🎯 Para <strong>${mensagem}</strong>, sua média diária deve ser de <strong>${Math.round(consumo)} kcal</strong> por dia.
+            `;
+        }
+    </script>
+</body>
+</html>
