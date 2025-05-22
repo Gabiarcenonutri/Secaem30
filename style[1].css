@@ -1,0 +1,79 @@
+
+@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;600;700&display=swap');
+
+body {
+  background-color: #fef9f9;
+  font-family: 'General Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 450px;
+  margin: 30px auto;
+  background: #f2ead5;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: #ec695e;
+  font-size: 24px;
+}
+
+h1 span {
+  font-size: 20px;
+  display: block;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #ec695e;
+  color: white;
+  border: none;
+  padding: 12px;
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #d85c52;
+}
+
+#resultado {
+  margin-top: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #888;
+}

@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Calorias | Seca em 30</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Logo Seca em 30" class="logo">
+    <h1>Calculadora de Calorias<br><span>Seca em 30</span></h1>
+
+    <form id="calc-form">
+      <label>Peso (kg):</label>
+      <input type="number" id="peso" required>
+
+      <label>Altura (cm):</label>
+      <input type="number" id="altura" required>
+
+      <label>Idade (anos):</label>
+      <input type="number" id="idade" required>
+
+      <label>Nível de Atividade:</label>
+      <select id="atividade">
+        <option value="1.2">Sedentária (0 a 1 treino/semana)</option>
+        <option value="1.375">Leve (2 a 3 treinos/semana)</option>
+        <option value="1.55">Moderada (4 a 5 treinos/semana)</option>
+        <option value="1.725">Alta (6 a 7 treinos/semana)</option>
+      </select>
+
+      <label>Objetivo:</label>
+      <select id="objetivo">
+        <option value="2">Perder até 2kg</option>
+        <option value="3">Perder até 3kg</option>
+        <option value="4">Perder até 4kg</option>
+        <option value="5">Perder até 5kg</option>
+      </select>
+
+      <button type="submit">Calcular</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <footer>
+      <p>@gabiarcenonutri</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
